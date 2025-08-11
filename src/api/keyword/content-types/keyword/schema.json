@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "keywords",
+  "info": {
+    "singularName": "keyword",
+    "pluralName": "keywords",
+    "displayName": "Keyword"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "unique": true
+    },
+    "posts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::post.post",
+      "mappedBy": "keywords"
+    }
+  }
+}
