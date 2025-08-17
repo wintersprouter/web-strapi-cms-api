@@ -1,0 +1,17 @@
+node_modules
+.env*
+!.env.example
+*.log
+.git
+.DS_Store
+.next
+dist
+build
+coverage
+.nyc_output
+.vscode
+.idea
+.cache
+.tmp
+.temp
+database/migrations
