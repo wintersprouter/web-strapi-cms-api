@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const crypto = require("crypto");
+import crypto from "crypto";
 
 console.log("🔐 生成 Strapi 生產環境金鑰\n");
 
