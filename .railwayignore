@@ -4,10 +4,7 @@ node_modules
 *.log
 .git
 .DS_Store
-Dockerfile.backup
 .next
-dist
-build
 coverage
 .nyc_output
 .vscode
@@ -15,3 +12,4 @@ coverage
 .cache
 .tmp
 .temp
+database/migrations
