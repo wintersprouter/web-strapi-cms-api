@@ -21,7 +21,8 @@ ENV PORT=1337
 # 建立 SQLite 資料目錄
 RUN mkdir -p data
 
-# 建置 Strapi admin
+# 清理任何舊的建置並重新建置 Strapi admin
+RUN rm -rf dist/build
 RUN npm run build
 
 # 移除 dev dependencies 節省空間
