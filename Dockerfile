@@ -18,6 +18,9 @@ ENV NODE_ENV=production
 ENV HOST=0.0.0.0
 ENV PORT=1337
 
+# 建立 SQLite 資料目錄
+RUN mkdir -p data
+
 # 建置 Strapi admin
 RUN npm run build
 

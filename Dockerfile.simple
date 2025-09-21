@@ -1,0 +1,33 @@
+# 簡化版 Dockerfile 用於測試
+FROM node:20-alpine
+
+WORKDIR /app
+
+# 複製 package files
+COPY package*.json ./
+
+# 安裝依賴
+RUN npm ci
+
+# 複製原始碼
+COPY . .
+
+# 設定環境變數
+ENV NODE_ENV=production
+ENV HOST=0.0.0.0
+ENV PORT=1337
+
+# 確保 dist 目錄存在
+RUN mkdir -p dist
+
+# 建置應用
+RUN npm run build
+
+# 檢查建置結果
+RUN ls -la dist/
+
+# 暴露端口
+EXPOSE 1337
+
+# 啟動命令
+CMD ["npm", "start"]
