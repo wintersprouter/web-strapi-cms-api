@@ -31,7 +31,7 @@ if (missingVars.length > 0) {
 // 設定預設值
 process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 process.env.HOST = process.env.HOST || '0.0.0.0';
-process.env.PORT = process.env.PORT || '1337';
+// PORT 由 Railway 自動提供，不設定預設值
 
 console.log('✅ 環境變數檢查完成');
 console.log(`📡 伺服器將在 ${process.env.HOST}:${process.env.PORT} 啟動`);
