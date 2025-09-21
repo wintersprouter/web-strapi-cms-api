@@ -16,7 +16,7 @@ COPY . .
 # 設定環境變數
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0
-ENV PORT=1337
+# Railway 會自動設定 PORT，不強制指定
 
 # 建立 SQLite 資料目錄
 RUN mkdir -p data
@@ -28,8 +28,8 @@ RUN npm run build
 # 移除 dev dependencies 節省空間
 RUN npm prune --production
 
-# 暴露端口
+# 暴露端口（Railway 會動態分配 PORT 環境變數）
 EXPOSE 1337
 
-# 啟動應用（直接啟動，不重複建置）
-CMD ["npm", "start"]
+# 啟動應用（使用 Railway 特化腳本）
+CMD ["npm", "run", "start:railway"]

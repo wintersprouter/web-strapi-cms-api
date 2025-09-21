@@ -34,8 +34,15 @@ export default ({
       },
     },
     postgres: {
-      connection: {
+      connection: env("DATABASE_URL") ? {
+        // Railway PostgreSQL 使用 connectionString
         connectionString: env("DATABASE_URL"),
+        ssl: {
+          rejectUnauthorized: false,
+        },
+        schema: env("DATABASE_SCHEMA", "public"),
+      } : {
+        // 本地開發使用個別參數
         host: env("DATABASE_HOST", "localhost"),
         port: parseInt(env("DATABASE_PORT", "5432")),
         database: env("DATABASE_NAME", "strapi"),
@@ -53,9 +60,16 @@ export default ({
         schema: env("DATABASE_SCHEMA", "public"),
       },
       pool: {
-        min: parseInt(env("DATABASE_POOL_MIN", "2")),
+        min: parseInt(env("DATABASE_POOL_MIN", "1")),
         max: parseInt(env("DATABASE_POOL_MAX", "10")),
+        acquireTimeoutMillis: parseInt(env("DATABASE_POOL_ACQUIRE_TIMEOUT", "30000")),
+        createTimeoutMillis: parseInt(env("DATABASE_POOL_CREATE_TIMEOUT", "30000")),
+        destroyTimeoutMillis: parseInt(env("DATABASE_POOL_DESTROY_TIMEOUT", "5000")),
+        idleTimeoutMillis: parseInt(env("DATABASE_POOL_IDLE_TIMEOUT", "30000")),
+        reapIntervalMillis: parseInt(env("DATABASE_POOL_REAP_INTERVAL", "1000")),
+        createRetryIntervalMillis: parseInt(env("DATABASE_POOL_CREATE_RETRY_INTERVAL", "200")),
       },
+      debug: env("NODE_ENV") === "development",
     },
     sqlite: {
       connection: {
